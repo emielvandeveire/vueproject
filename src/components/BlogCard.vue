@@ -1,5 +1,5 @@
 <template>
-  <div class="bog-card">
+  <div class="blog-card">
     <div v-show="editPost" class="icons">
       <div class="icon">
         <Edit class="edit" />
