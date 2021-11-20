@@ -10,7 +10,7 @@
           Login/Register<Arrow class="arrow arrow-light" />
         </router-link>
         <router-link class="link link-light" v-else to="#"
-          >View The Post<Arrow class="arrow" />
+          >View The Post<Arrow class="arrow arrow-light" />
         </router-link>
       </div>
     </div>
