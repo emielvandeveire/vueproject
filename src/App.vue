@@ -23,28 +23,33 @@ export default {
     };
   },
   created() {
+    firebase.auth().onAuthStateChanged((user) => {
+      this.$store.commit("updateUser", user);
+      if(user) {
+        this.$store.dispatch("getCurrentUser")
+        console.log(this.$store.state.profileEmail)
+      }
+    });
     this.checkRoute();
-    
-    console.log(firebase.auth().currentUser)
   },
   mounted() {},
   methods: {
     checkRoute() {
       if (
-        this.$route.name === "Login" || 
-        this.$route.name === "Register" || 
+        this.$route.name === "Login" ||
+        this.$route.name === "Register" ||
         this.$route.name === "ForgotPassword"
       ) {
         this.navigation = true;
         return;
       }
       this.navigation = false;
-    }
+    },
   },
   watch: {
     $route() {
       this.checkRoute();
-    }
+    },
   },
 };
 </script>

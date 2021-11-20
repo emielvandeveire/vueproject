@@ -9,7 +9,7 @@
         <router-link class="link link-light" v-if="post.welcomeScreen" to="#">
           Login/Register<Arrow class="arrow arrow-light" />
         </router-link>
-        <router-link class="link link-light black" v-else to="#"
+        <router-link class="link link-light" v-else to="#"
           >View The Post<Arrow class="arrow" />
         </router-link>
       </div>
@@ -66,6 +66,7 @@ export default {
   align-items: center;
   flex: 4;
   order: 2;
+  background: #303030;
 }
 @media (min-width: 700px) {
   .blog-wrapper .blog-content {
@@ -91,6 +92,7 @@ export default {
   font-weight: 300;
   text-transform: uppercase;
   margin-bottom: 24px;
+  color: white;
 }
 @media (min-width: 700px) {
   .blog-wrapper .blog-content div h2 {
@@ -101,6 +103,7 @@ export default {
   font-size: 15px;
   font-weight: 300;
   line-height: 1.7;
+  color: white;
 }
 .blog-wrapper .blog-content div .content-preview {
   font-size: 13px;
@@ -159,6 +162,6 @@ export default {
 
 .no-user:nth-child(2) .blog-content a,
 .no-user:nth-child(3) .blog-content a {
-    color: #000
+  color: #000;
 }
 </style>
