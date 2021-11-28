@@ -29,6 +29,11 @@ export default new Vuex.Store({
                 blogDate: "May 1, 2021",
             },
         ],
+        blogHTML: "Write your blog title here...",
+        blogTitle: "",
+        blogPhotoName: "",
+        blogPhotoFileURL: null,
+        blogPhotoPreview: null,
         editPost: null,
         user: null,
         profileEmail: null,
@@ -39,6 +44,21 @@ export default new Vuex.Store({
         profileInitials: null,
     },
     mutations: {
+        newBlogPost(state, payload) {
+            state.blogHTML = payload;
+        },
+        updateBlogTitle(state, payload) {
+            state.blogTitle = payload;
+        },
+        fileNameChange(state, payload) {
+            state.blogPhotoName = payload;
+        },
+        createFileURL(state, payload) {
+            state.blogPhotoFileURL = payload;
+        },
+        openPhotoPreview(state) {
+            state.blogPhotoPreview = !state.blogPhotoPreview;
+        },
         toggleEditPost(state, payload) {
             state.editPost = payload;
         },
@@ -58,6 +78,15 @@ export default new Vuex.Store({
                 state.profileFirstName.match(/(\b\S)?/g).join("") +
                 state.profileLastName.match(/(\b\S)?/g).join("");
         },
+        changeFirstName(state, payload) {
+            state.profileFirstName = payload;
+        },
+        changeLastName(state, payload) {
+            state.profileLastName = payload;
+        },
+        changeUsername(state, payload) {
+            state.profileUsername = payload;
+        },
     },
     actions: {
         async getCurrentUser({ commit }) {
@@ -67,7 +96,16 @@ export default new Vuex.Store({
             const dbResults = await dataBase.get();
             commit("setProfileInfo", dbResults);
             commit("setProfileInitials");
-            console.log(dbResults)
+            console.log(dbResults);
+        },
+        async updateUserSettings({ commit, state }) {
+            const dataBase = await db.collection("users").doc(state.profileId);
+            await dataBase.update({
+                firstName: state.profileFirstName,
+                lastName: state.profileLastName,
+                username: state.profileUsername,
+            });
+            commit("setProfileInitials");
         },
     },
     modules: {},
