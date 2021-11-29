@@ -3,7 +3,7 @@
     <div class="blog-content">
       <div>
         <h2 v-if="post.welcomeScreen">{{ post.title }}</h2>
-        <h2 v-else>{{ post.title }}</h2>
+        <h2 v-else>{{ post.blogTitle }}</h2>
         <p v-if="post.welcomeScreen">{{ post.blogPost }}</p>
         <p class="content-preview" v-else v-html="post.blogHTML"></p>
         <router-link class="link link-light" v-if="post.welcomeScreen" to="#">
@@ -22,7 +22,7 @@
       />
       <img
         v-else
-        :src="require(`../assets/blogPhotos/${post.blogCoverPhoto}.jpg`)"
+        :src="post.blogCoverPhoto"
         alt=""
       />
     </div>
